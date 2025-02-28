@@ -1,31 +1,34 @@
-{% extends "base.html" %} {% block description %} Sorry, the page you were
-trying to access doesn't exist or has been moved. {% endblock description %} {%
-block content %}
-<article class="error-page">
-  <header class="error-header">
-    <h1>404 - Page Not Found</h1>
-  </header>
+{% extends "base.html" %}
 
-  <section class="error-content">
-    <p>
-      Sorry, the page you were trying to access doesn't exist or has been moved.
-    </p>
+{% block description %}
+  Sorry, the page you were trying to access doesn't exist or has been moved.
+{% endblock description %}
 
-    <nav class="error-navigation">
-      <h2>You might want to visit:</h2>
-      <ul>
-        <li><a href="/">Return to home page</a></li>
-        <li><a href="/blog">Browse blog posts</a></li>
-        <li><a href="/now">See what I'm up to now</a></li>
-      </ul>
-    </nav>
-  </section>
+{% block content %}
+  <article class="error-page">
+    <header class="error-header">
+      <h1>404 - Page Not Found</h1>
+    </header>
 
-  <footer class="error-footer">
-    <small
-      >If you believe this is an error, please
-      <a href="mailto:your-email@example.com">contact me</a>.</small
-    >
-  </footer>
-</article>
+    <section class="error-content">
+      <p>
+        Sorry, the page you were trying to access doesn't exist or has been moved.
+      </p>
+
+      <nav class="error-navigation">
+        <h2>You might want to visit:</h2>
+        <ul>
+          <li><a href="/">Return to home page</a></li>
+          <li><a href="/blog">Browse blog posts</a></li>
+          <li><a href="/now">See what I'm up to now</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <footer class="error-footer">
+      <small>If you believe this is an error, please
+        <a href="mailto:your-email@example.com">contact me</a>.
+      </small>
+    </footer>
+  </article>
 {% endblock content %}
