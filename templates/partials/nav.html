@@ -1,0 +1,38 @@
+<header class="site-header">
+  <div class="progress-bar" id="readingProgress"></div>
+  <div class="container">
+    <nav class="main-navigation" aria-label="Main Navigation">
+      <a href="/" class="site-title" aria-label="Home">Elowen Luo</a>
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a
+            href="/blog"
+            class="nav-link{% if current_path is defined and current_path is starting_with('blog') %} active{% endif %}"
+            >Blog</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            href="/now"
+            class="nav-link{% if current_path is defined and current_path is starting_with('now') %} active{% endif %}"
+            >Now</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            href="/excerpts"
+            class="nav-link{% if current_path is defined and current_path is starting_with('excerpts') %} active{% endif %}"
+            >Excerpts</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            href="/thoughts"
+            class="nav-link{% if current_path is defined and current_path is starting_with('thoughts') %} active{% endif %}"
+            >Thoughts</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

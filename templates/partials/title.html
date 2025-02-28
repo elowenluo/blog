@@ -1,0 +1,24 @@
+{%- set prefix = config.title | safe -%}
+{%- set separator = " | " -%}
+
+{%- if current_path and current_path == "/" -%}
+    {{- prefix -}}
+{% elif title %}
+    {%- set suffix = title -%}
+    {{- prefix ~ separator ~ suffix -}}
+{% elif section %}
+    {%- set suffix = section.title -%}
+    {{- prefix ~ separator ~ suffix -}}
+{% elif page %}
+    {%- set suffix = page.title -%}
+    {{- prefix ~ separator ~ suffix -}}
+{% elif term %}
+    {%- set suffix = term.name -%}
+    {{- prefix ~ separator ~ suffix -}}
+{% elif taxonomy %}
+    {%- set suffix = taxonomy.name | capitalize -%}
+    {{- prefix ~ separator ~ suffix -}}
+{% else %}
+    {%- set suffix = "404" -%}
+    {{- prefix ~ separator ~ suffix -}}
+{%- endif -%}

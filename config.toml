@@ -1,5 +1,7 @@
 # The URL the site will be built for
+title = "Elowen's Blog"
 base_url = "https://elowenluo.com"
+description = "A minimalist tech blog focused on software development, digital minimalism, and thoughtful computing. Sharing insights on web technologies, programming concepts, and personal digital workflows."
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
@@ -14,3 +16,7 @@ highlight_code = true
 
 [extra]
 # Put all your custom variables here
+author = "Elowen Luo"
+keywords = "minimalist tech blog, software engineering insights, web development, digital minimalism, clean design, Zola, GitHub, technology reflections, programming insights, thoughtful computing"
+github = "https://www.github.com/elowenluo"
+default_image = ""
