@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<article class="section-container">
+<article class="post-section">
   <header class="section-header">
     <h1>{{ section.title }}</h1>
     {% if section.description %}
@@ -9,17 +9,17 @@
     {% endif %}
   </header>
 
-  <section class="section-content">
+  <div class="article-content">
     {% if section.content %}
       {{ section.content | safe }}
     {% endif %}
 
     {% if section.pages %}
-      <ul class="section-pages">
+      <ol class="page-list">
         {% for page in section.pages %}
-          <li class="section-page-item">
+          <li class="page-item">
             <article class="page-preview">
-              <header>
+              <header class="page-header">
                 <h2><a href="{{ page.permalink }}">{{ page.title }}</a></h2>
                 {% if page.date %}
                   <time datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>
@@ -31,19 +31,19 @@
             </article>
           </li>
         {% endfor %}
-      </ul>
+      </ol>
     {% endif %}
 
     {% if section.subsections %}
-      <nav class="subsections">
+      <nav class="category-nav">
         <h2>Categories</h2>
-        <ul>
+        <ul class="category-list">
           {% for subsection in section.subsections %}
-            <li><a href="{{ subsection.permalink }}">{{ subsection.title }}</a></li>
+            <li class="category-item"><a href="{{ subsection.permalink }}">{{ subsection.title }}</a></li>
           {% endfor %}
         </ul>
       </nav>
     {% endif %}
-  </section>
+  </div>
 </article>
 {% endblock content %}

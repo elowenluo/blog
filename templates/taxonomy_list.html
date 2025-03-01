@@ -10,7 +10,7 @@
 
   {% if terms %}
   <section class="taxonomy-terms">
-    <ul class="taxonomy-terms-list">
+    <ul class="taxonomy-terms-list" aria-label="List of {{ taxonomy.name }}">
       {% for term in terms %}
       <li class="taxonomy-term">
         <article>
@@ -28,7 +28,9 @@
     </ul>
   </section>
   {% else %}
-  <p>No {{ taxonomy.name }} found.</p>
+  <section class="taxonomy-empty-state">
+    <p>No {{ taxonomy.name }} found.</p>
+  </section>
   {% endif %}
 </main>
 {% endblock content %}

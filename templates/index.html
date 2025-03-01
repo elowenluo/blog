@@ -5,17 +5,17 @@
   <header class="home-header">
     <h1>{{ config.extra.author }}</h1>
     
-    <section class="introduction">
+    <div class="introduction">
       {% if section.content %}
         {{ section.content | safe }}
       {% else %}
         <p>I'm a blogger focused on software development, digital minimalism, and thoughtful computing. Here, I share insights on web technologies, programming concepts, and personal digital workflows.</p>
       {% endif %}
-    </section>
+    </div>
   </header>
-
-  <section class="last-updated">
-    <small>
+  
+  <div class="last-updated">
+    <p class="small-text">
       {% set blog_section = get_section(path="blog/_index.md") %}
       {% if blog_section and blog_section.pages and blog_section.pages | length > 0 %}
         {% set latest_posts = blog_section.pages | sort(attribute="date") | reverse %}
@@ -24,8 +24,8 @@
           {{ latest_posts[0].date | date(format="%Y-%m-%d") }}
         </time>
       {% endif %}
-    </small>
-  </section>
+    </p>
+  </div>
 
   {% set blog_section = get_section(path="blog/_index.md") %}
   {% if blog_section and blog_section.pages %}

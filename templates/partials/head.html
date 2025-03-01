@@ -12,6 +12,7 @@
     content="{% if page.taxonomies.tags %}{{ page.taxonomies.tags | join(sep=', ') }}, {% endif %}{{ config.extra.keywords }}"
   />
   <meta name="author" content="{{ config.extra.author }}" />
+  <meta name="theme-color" content="#d5cabe" />
 
   <meta
     property="og:title"
@@ -60,7 +61,8 @@
     href="{% if page.permalink %}{{ config.base_url }}{{ page.permalink }}{% else %}{{ config.base_url }}{% endif %}"
   />
   <link rel="icon" href="{{ config.base_url }}/favicon.ico" />
-
-  <!-- TODO style -->
-  <!-- <link rel="stylesheet" href="{{ config.base_url }}/styles.css"> -->
+  <link rel="apple-touch-icon" href="{{ config.base_url }}/apple-touch-icon.png" />
+  
+  <link rel="preload" href="{{ get_url(path='style.css') | safe }}" as="style">
+  <link rel="stylesheet" href="{{ get_url(path='style.css') | safe }}">
 </head>
