@@ -1,1 +1,93 @@
 {% extends "base.html" %}
+
+{% block content %}
+<article class="home-container">
+  <header class="home-header">
+    <h1>{{ config.extra.author }}</h1>
+    
+    <section class="introduction">
+      {% if section.content %}
+        {{ section.content | safe }}
+      {% else %}
+        <p>I'm a blogger focused on software development, digital minimalism, and thoughtful computing. Here, I share insights on web technologies, programming concepts, and personal digital workflows.</p>
+      {% endif %}
+    </section>
+  </header>
+
+  <section class="last-updated">
+    <small>
+      {% set blog_section = get_section(path="blog/_index.md") %}
+      {% if blog_section and blog_section.pages and blog_section.pages | length > 0 %}
+        {% set latest_posts = blog_section.pages | sort(attribute="date") | reverse %}
+        Blog last updated 
+        <time datetime="{{ latest_posts[0].date }}">
+          {{ latest_posts[0].date | date(format="%Y-%m-%d") }}
+        </time>
+      {% endif %}
+    </small>
+  </section>
+
+  {% set blog_section = get_section(path="blog/_index.md") %}
+  {% if blog_section and blog_section.pages %}
+    {% set pinned_pages = [] %}
+    {% for page in blog_section.pages %}
+      {% if page.extra and page.extra.pinned %}
+        {% set_global pinned_pages = pinned_pages | concat(with=page) %}
+      {% endif %}
+    {% endfor %}
+
+    {% if pinned_pages | length > 0 %}
+      <section class="pinned-posts">
+        <h2>Featured Posts</h2>
+        <ul class="post-list">
+          {% for page in pinned_pages %}
+            <li class="post-item">
+              <article class="post-preview">
+                <header>
+                  <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
+                  <time datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>
+                </header>
+                {% if page.description %}
+                  <p class="post-description">{{ page.description }}</p>
+                {% endif %}
+              </article>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+
+    <section class="latest-posts">
+      <h2>Latest Posts</h2>
+      {% set latest_posts = blog_section.pages | sort(attribute="date") | reverse | slice(end=5) %}
+      
+      {% if latest_posts | length > 0 %}
+        <ul class="post-list">
+          {% for page in latest_posts %}
+            <li class="post-item">
+              <article class="post-preview">
+                <header>
+                  <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
+                  <time datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>
+                </header>
+                {% if page.description %}
+                  <p class="post-description">{{ page.description }}</p>
+                {% endif %}
+              </article>
+            </li>
+          {% endfor %}
+        </ul>
+        <footer class="section-footer">
+          <nav class="pagination">
+            <a href="{{ blog_section.permalink }}" class="view-all">View All Posts <span aria-hidden="true">→</span></a>
+          </nav>
+        </footer>
+      {% else %}
+        <p>No posts yet</p>
+      {% endif %}
+    </section>
+  {% else %}
+    <p>No posts available</p>
+  {% endif %}
+</article>
+{% endblock content %}
