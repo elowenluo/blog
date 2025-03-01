@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <article class="blog-post">
+    <header class="post-header">
+      <h1 class="post-title">{{ page.title }}</h1>
+      
+      <div class="post-meta">
+        {% if page.date %}
+          <time datetime="{{ page.date }}">{{ page.date | date(format="%Y-%m-%d") }}</time>
+        {% endif %}
+        
+        {% if page.taxonomies.categories %}
+        <div class="categories">
+          {% for category in page.taxonomies.categories %}
+            <a href="{{ get_taxonomy_url(kind="categories", name=category) }}" class="category">{{ category }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </header>
+
+    <div class="post-layout">
+      <div class="post-content">
+        {{ page.content | safe }}
+
+        {% if page.taxonomies.tags %}
+        <footer class="post-tags">
+          <h2>Tags:</h2>
+          <ul class="tag-list">
+            {% for tag in page.taxonomies.tags %}
+              <li><a href="{{ get_taxonomy_url(kind="tags", name=tag) }}" class="tag">{{ tag }}</a></li>
+            {% endfor %}
+          </ul>
+        </footer>
+        {% endif %}
+      </div>
+
+      <aside class="post-toc">
+        <nav class="table-of-contents" aria-label="Table of Contents">
+          <h2>Contents</h2>
+          <div id="toc">
+            {% if toc %}
+              {{ toc | safe }}
+            {% else %}
+              <p>No headings found</p>
+            {% endif %}
+          </div>
+        </nav>
+        <div class="back-to-top">
+          <a href="#" id="back-to-top-link" aria-label="Back to top">↑ Back to top</a>
+        </div>
+      </aside>
+    </div>
+
+    <nav class="post-navigation">
+      {% if page.earlier %}
+        <a href="{{ page.earlier.permalink }}" class="previous-post">
+          <span class="nav-label">← Previous</span>
+          <span class="post-title">{{ page.earlier.title }}</span>
+        </a>
+      {% endif %}
+      
+      {% if page.later %}
+        <a href="{{ page.later.permalink }}" class="next-post">
+          <span class="nav-label">Next →</span>
+          <span class="post-title">{{ page.later.title }}</span>
+        </a>
+      {% endif %}
+    </nav>
+  </article>
+</div>
+
+<script>
+  // JavaScript for "Back to Top" button
+  document.addEventListener('DOMContentLoaded', function() {
+    // Back to top functionality
+    const backToTopButton = document.getElementById('back-to-top-link');
+    if (backToTopButton) {
+      backToTopButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  });
+</script>
+{% endblock content %}
