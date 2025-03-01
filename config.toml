@@ -12,8 +12,8 @@ compile_sass = true
 build_search_index = true
 
 taxonomies = [
-  { name = "tags", feed = true, paginate_by = 50 },
-  { name = "categories", feed = true, paginate_by = 50 },
+  {name = "tags", paginate_by = 5, feed = true},
+  {name = "categories", paginate_by = 5, feed = true},
 ]
 
 [markdown]

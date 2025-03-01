@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ taxonomy.name | title }} | {{ config.title }}{% endblock title %}
+
+{% block content %}
+<main class="taxonomy-list">
+  <header>
+    <h1>All {{ taxonomy.name | title }}</h1>
+  </header>
+
+  {% if terms %}
+  <section class="taxonomy-terms">
+    <ul class="taxonomy-terms-list">
+      {% for term in terms %}
+      <li class="taxonomy-term">
+        <article>
+          <h2>
+            <a href="{{ term.permalink }}">{{ term.name }}</a>
+          </h2>
+          <p class="taxonomy-term-count">
+            <span>{{ term.pages | length }} 
+              {% if term.pages | length == 1 %}post{% else %}posts{% endif %}
+            </span>
+          </p>
+        </article>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% else %}
+  <p>No {{ taxonomy.name }} found.</p>
+  {% endif %}
+</main>
+{% endblock content %}
