@@ -1,0 +1,42 @@
+.post-list {
+  list-style: none;
+}
+
+.post-item {
+  margin-bottom: $spacing-medium;
+}
+
+.post-card {
+  padding: $spacing-medium;
+  margin-bottom: $spacing-medium;
+  background-color: #fff;
+  border-left: 3px solid $color-light-accent;
+  transition: color-border 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    border-left-color: $color-accent;
+    transform: translateX(5px);
+  }
+}
+
+.post-title {
+  font-size: 1.25rem;
+  margin-bottom: $spacing-small;
+}
+
+.post-meta {
+  font-size: 0.9rem;
+  color: $color-muted;
+  margin-bottom: 0.75rem;
+}
+
+.post-summary,
+.post-description {
+  font-size: 1rem;
+}
+
+.post-preview {
+  .post-header {
+    margin-bottom: $spacing-small;
+  }
+}

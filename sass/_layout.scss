@@ -1,0 +1,30 @@
+.site-header {
+  padding: $spacing-large 0;
+  border-bottom: 1px solid $color-light-accent;
+  position: relative;
+}
+
+.site-content {
+  padding: $spacing-large 0;
+}
+
+.intro-section {
+  margin-bottom: $spacing-extra-large;
+}
+
+.site-footer {
+  padding: $spacing-large 0;
+  border-top: 1px solid $color-light-accent;
+  margin-top: $spacing-extra-large;
+}
+
+.home-container {
+  .home-header {
+    margin-bottom: $spacing-extra-large;
+  }
+}
+
+.pinned-posts,
+.latest-posts {
+  margin-top: $spacing-large;
+}

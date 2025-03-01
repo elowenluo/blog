@@ -1,0 +1,41 @@
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: $color-muted;
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+    gap: $spacing-base;
+    align-items: flex-start;
+  }
+}
+
+.social-links {
+  display: flex;
+  gap: $spacing-base;
+  list-style: none;
+}
+
+.copyright {
+  margin-top: $spacing-base;
+  text-align: center;
+  font-size: 0.9rem;
+  color: $color-muted;
+}
+
+.license-container {
+  margin-top: $spacing-base;
+  font-size: 0.85rem;
+}
+
+.license-badges {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: $spacing-small;
+
+  img {
+    height: 22px;
+  }
+}

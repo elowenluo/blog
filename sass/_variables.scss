@@ -1,0 +1,65 @@
+// Color variables
+$color-background: #f8f5f2;
+$color-background-dark: #eae4df;
+$color-text: #3a3a3a;
+$color-accent: #8b5d33;
+$color-muted: #c0b8b0;
+$color-light-accent: #d5cabe;
+$color-highlight: #a97b50;
+$color-border: $color-light-accent;
+$color-primary: $color-accent;
+$color-secondary: $color-muted;
+$color-link: $color-accent;
+$color-link-hover: $color-highlight;
+
+// Font variables
+$serif-font: "Georgia", serif;
+$sans-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$mono-font: "Courier New", Courier, monospace;
+
+// Breakpoint variables
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 480px;
+
+// Spacing variables
+$spacing-extra-small: 0.5rem;
+$spacing-small: 0.75rem;
+$spacing-base: 1rem;
+$spacing-medium: 1.5rem;
+$spacing-large: 2rem;
+$spacing-extra-large: 3rem;
+
+// Container width
+$container-width: 800px;
+
+// Spacing variables - extended
+$spacing-1: 0.25rem;
+$spacing-2: 0.5rem;
+$spacing-3: 0.75rem; // This is the same as $spacing-small
+$spacing-4: 1rem; // This is the same as $spacing-base
+$spacing-6: 1.5rem; // This is the same as $spacing-medium
+$spacing-8: 2rem; // This is the same as $spacing-large
+$spacing-12: 3rem; // This is the same as $spacing-extra-large
+
+// Font size variables
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-md: 1.125rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 1.5rem;
+$font-size-2xl: 2rem;
+$font-size-3xl: 2.5rem;
+
+// Border radius variables
+$border-radius-none: 0;
+$border-radius-sm: 0.125rem;
+$border-radius-md: 0.25rem;
+$border-radius-lg: 0.5rem;
+$border-radius-xl: 1rem;
+$border-radius-full: 9999px;
+
+// Transition variables
+$transition-fast: 0.2s ease;
+$transition-medium: 0.3s ease;
+$transition-slow: 0.5s ease;

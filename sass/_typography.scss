@@ -1,0 +1,324 @@
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $sans-font;
+  font-weight: 500;
+  margin-bottom: $spacing-base;
+  color: $color-text;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-top: $spacing-extra-large;
+  margin-bottom: $spacing-medium;
+  text-align: center;
+  position: relative;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-top: $spacing-large;
+  margin-bottom: $spacing-base;
+  color: $color-accent;
+  display: inline-block;
+  position: relative;
+  padding-bottom: $spacing-small;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: $color-light-accent;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-top: $spacing-medium;
+  margin-bottom: $spacing-base;
+}
+
+h4 {
+  font-size: 1.3rem;
+  margin-top: $spacing-base;
+  margin-bottom: $spacing-small;
+}
+
+h5 {
+  font-size: 1.1rem;
+  margin-top: $spacing-base - 0.25rem;
+  margin-bottom: $spacing-small;
+  color: $color-accent;
+}
+
+h6 {
+  font-size: 1rem;
+  margin-top: $spacing-base;
+  margin-bottom: $spacing-extra-small;
+  font-style: italic;
+  color: $color-accent;
+}
+
+// Paragraphs
+p {
+  margin-bottom: $spacing-base;
+  max-width: 38rem; // Approximately 65-75 characters per line
+}
+
+// Text formatting
+strong {
+  font-weight: 700;
+}
+
+em {
+  font-style: italic;
+}
+
+del {
+  text-decoration: line-through;
+  color: $color-muted;
+}
+
+// Links
+a {
+  color: $color-link;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, color-border 0.2s ease;
+
+  &:hover {
+    color: $color-link-hover;
+    color-border: $color-link-hover;
+  }
+}
+
+// Lists
+ul,
+ol {
+  margin-bottom: $spacing-base;
+  padding-left: $spacing-base;
+}
+
+li {
+  margin-bottom: $spacing-small;
+
+  > ul,
+  > ol {
+    margin-top: $spacing-small;
+    margin-bottom: $spacing-small;
+  }
+}
+
+// Small text and last updated indicator
+.small-text {
+  font-size: 0.9rem;
+  color: $color-muted;
+}
+
+.last-updated {
+  @extend .small-text;
+  margin-bottom: $spacing-medium;
+}
+
+// Example formatting
+.markdown-example {
+  margin: $spacing-extra-large 0;
+}
+
+.example-title {
+  font-family: $sans-font;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-muted;
+  margin-bottom: $spacing-base;
+}
+
+// Responsive typography
+@media (max-width: $breakpoint-mobile) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+  }
+
+  h5,
+  h6 {
+    font-size: 1rem;
+  }
+}
+
+code {
+  font-family: $mono-font;
+  font-size: 0.9em;
+  background-color: $color-background;
+  color: $color-text;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+}
+
+.code-container {
+  position: relative;
+  margin-bottom: $spacing-base;
+}
+
+pre {
+  padding: $spacing-base;
+  background-color: $color-background;
+  border-radius: 4px;
+  overflow-x: auto;
+  border-left: 3px solid $color-accent;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 0.75rem;
+  }
+
+  code {
+    display: block;
+    background-color: transparent;
+    padding: 0;
+    line-height: 1.5;
+  }
+}
+
+.copy-button {
+  position: absolute;
+  top: $spacing-small;
+  right: $spacing-small;
+  background-color: $color-accent;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.copied {
+    background-color: #5d8b33;
+  }
+}
+
+// Blockquote
+blockquote {
+  margin: $spacing-base 0;
+  padding: $spacing-base $spacing-base;
+  background-color: $color-background-dark;
+  border-left: 3px solid $color-accent;
+  font-style: italic;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 0.75rem 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  cite {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.9em;
+    color: $color-muted;
+    font-style: normal;
+  }
+}
+
+// Tables
+table {
+  width: 100%;
+  margin-bottom: $spacing-base;
+  border-collapse: collapse;
+  font-size: 0.95em;
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 0.85em;
+  }
+}
+
+th {
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 2px solid $color-border;
+  font-weight: 700;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-small;
+  }
+}
+
+td {
+  padding: 0.75rem;
+  border-bottom: 1px solid $color-border;
+  vertical-align: top;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-small;
+  }
+}
+
+tr:nth-child(even) {
+  background-color: $color-background-dark;
+}
+
+// Image containers and captions
+.image-container {
+  margin: $spacing-base 0;
+}
+
+.image-caption {
+  font-size: 0.9em;
+  color: $color-muted;
+  text-align: center;
+  margin-top: $spacing-small;
+}
+
+// Footnotes
+.footnotes {
+  margin-top: $spacing-extra-large;
+  padding-top: $spacing-base;
+  border-top: 1px solid $color-light-accent;
+
+  ol {
+    font-size: 0.9em;
+  }
+
+  li {
+    margin-bottom: 0.75rem;
+  }
+}
+
+.footnote-ref {
+  font-size: 0.75em;
+  vertical-align: super;
+  line-height: 0;
+  margin: 0 0.2em;
+}
+
+.footnote-backref {
+  font-size: 0.9em;
+  padding: 0 0.3em;
+}

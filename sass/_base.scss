@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $serif-font;
+  line-height: 1.5;
+  color: $color-text;
+  background-color: $color-background;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+a {
+  color: $color-accent;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color-border 0.2s ease;
+
+  &:hover {
+    color-border: $color-accent;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 $spacing-base;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 0 15px;
+  }
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background-color: $color-accent;
+  width: 0%;
+  z-index: 1000;
+  transition: width 0.1s ease;
+}
