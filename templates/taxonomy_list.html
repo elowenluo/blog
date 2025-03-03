@@ -3,21 +3,21 @@
 {% block title %}{{ taxonomy.name | title }} | {{ config.title }}{% endblock title %}
 
 {% block content %}
-<main class="taxonomy-list">
-  <header>
-    <h1>All {{ taxonomy.name | title }}</h1>
+<main class="taxonomy">
+  <header class="taxonomy__header">
+    <h1 class="taxonomy__title">All {{ taxonomy.name | title }}</h1>
   </header>
 
   {% if terms %}
-  <section class="taxonomy-terms">
-    <ul class="taxonomy-terms-list" aria-label="List of {{ taxonomy.name }}">
+  <section class="taxonomy__terms">
+    <ul class="taxonomy__list" aria-label="List of {{ taxonomy.name }}">
       {% for term in terms %}
-      <li class="taxonomy-term">
-        <article>
-          <h2>
-            <a href="{{ term.permalink }}">{{ term.name }}</a>
+      <li class="taxonomy__item">
+        <article class="taxonomy__article">
+          <h2 class="taxonomy__name">
+            <a href="{{ term.permalink }}" class="taxonomy__link">{{ term.name }}</a>
           </h2>
-          <p class="taxonomy-term-count">
+          <p class="taxonomy__count">
             <span>{{ term.pages | length }} 
               {% if term.pages | length == 1 %}post{% else %}posts{% endif %}
             </span>
@@ -28,8 +28,8 @@
     </ul>
   </section>
   {% else %}
-  <section class="taxonomy-empty-state">
-    <p>No {{ taxonomy.name }} found.</p>
+  <section class="taxonomy__empty">
+    <p class="taxonomy__message">No {{ taxonomy.name }} found.</p>
   </section>
   {% endif %}
 </main>

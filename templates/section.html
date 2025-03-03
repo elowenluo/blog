@@ -1,32 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-<article class="post-section">
-  <header class="section-header">
+<article class="section">
+  <header class="section__header">
     <h1>{{ section.title }}</h1>
     {% if section.description %}
-      <p class="section-description">{{ section.description }}</p>
+      <p class="section__description">{{ section.description }}</p>
     {% endif %}
   </header>
 
-  <div class="article-content">
+  <div class="section__content">
     {% if section.content %}
       {{ section.content | safe }}
     {% endif %}
 
     {% if section.pages %}
-      <ol class="page-list">
+      <ol class="section__list">
         {% for page in section.pages %}
-          <li class="page-item">
-            <article class="page-preview">
-              <header class="page-header">
+          <li class="section__item">
+            <article class="section__preview">
+              <header class="section__preview-header">
                 <h2><a href="{{ page.permalink }}">{{ page.title }}</a></h2>
                 {% if page.date %}
                   <time datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>
                 {% endif %}
               </header>
               {% if page.description %}
-                <p class="page-description">{{ page.description }}</p>
+                <p class="section__preview-description">{{ page.description }}</p>
               {% endif %}
             </article>
           </li>
@@ -35,11 +35,11 @@
     {% endif %}
 
     {% if section.subsections %}
-      <nav class="category-nav">
+      <nav class="section__categories">
         <h2>Categories</h2>
-        <ul class="category-list">
+        <ul class="section__categories-list">
           {% for subsection in section.subsections %}
-            <li class="category-item"><a href="{{ subsection.permalink }}">{{ subsection.title }}</a></li>
+            <li class="section__categories-item"><a href="{{ subsection.permalink }}">{{ subsection.title }}</a></li>
           {% endfor %}
         </ul>
       </nav>

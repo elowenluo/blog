@@ -1,29 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<article class="blog-section">
-  <header class="blog-header">
+<article class="blog">
+  <header class="blog__header">
     <h1>{{ section.title }}</h1>
     {% if section.description %}
-      <p class="section-description">{{ section.description }}</p>
+      <p class="blog__description">{{ section.description }}</p>
     {% endif %}
   </header>
 
-  <div class="blog-layout">
-    <section class="posts">
+  <div class="blog__layout">
+    <section class="blog__posts">
       {% if paginator.pages %}
-        <ul class="post-list">
+        <ul class="blog__list">
           {% for page in paginator.pages %}
-            <li class="post-item">
+            <li class="blog__item">
               <article class="post">
-                <header class="post-header">
-                  <h2 class="post-title"><a href="{{ page.permalink }}">{{ page.title }}</a></h2>
+                <header class="post__header">
+                  <h2 class="post__title"><a href="{{ page.permalink }}">{{ page.title }}</a></h2>
                   {% if page.date %}
-                    <time class="post-date" datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>
+                    <time class="post__date" datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>
                   {% endif %}
                 </header>
                 {% if page.description %}
-                  <div class="post-summary">{{ page.description }}</div>
+                  <div class="post__summary">{{ page.description }}</div>
                 {% endif %}
               </article>
             </li>
@@ -32,13 +32,13 @@
 
         {% if paginator.number_pagers > 1 %}
           <nav class="pagination" aria-label="Pagination">
-            <ul class="pagination-list">
+            <ul class="pagination__list">
               {% if paginator.previous %}
-                <li class="page-item prev">
+                <li class="pagination__item pagination__item--prev">
                   <a href="{{ paginator.previous }}" aria-label="Previous page">← Previous</a>
                 </li>
               {% else %}
-                <li class="page-item prev disabled">
+                <li class="pagination__item pagination__item--prev pagination__item--disabled">
                   <span>← Previous</span>
                 </li>
               {% endif %}
@@ -46,11 +46,11 @@
               <!-- 保留原有分页逻辑代码 -->
               
               {% if paginator.next %}
-                <li class="page-item next">
+                <li class="pagination__item pagination__item--next">
                   <a href="{{ paginator.next }}" aria-label="Next page">Next →</a>
                 </li>
               {% else %}
-                <li class="page-item next disabled">
+                <li class="pagination__item pagination__item--next pagination__item--disabled">
                   <span>Next →</span>
                 </li>
               {% endif %}
@@ -58,20 +58,20 @@
           </nav>
         {% endif %}
       {% else %}
-        <p class="no-posts">No posts available</p>
+        <p class="blog__empty">No posts available</p>
       {% endif %}
     </section>
 
     <aside class="sidebar">
       {% if section.taxonomies %}
-        <section class="taxonomy-section">
+        <section class="sidebar__section sidebar__section--categories">
           <h2>Categories</h2>
           {% if section.taxonomies.categories %}
-            <ul class="taxonomy-list category-list">
+            <ul class="sidebar__list">
               {% for category, pages in section.taxonomies.categories | sort(attribute="1", reverse=true) %}
-                <li class="taxonomy-item">
+                <li class="sidebar__item">
                   <a href="{{ get_taxonomy_url(kind="categories", name=category) }}">
-                    {{ category }} <span class="count">({{ pages | length }})</span>
+                    {{ category }} <span class="sidebar__count">({{ pages | length }})</span>
                   </a>
                 </li>
               {% endfor %}
@@ -81,15 +81,15 @@
           {% endif %}
         </section>
 
-        <section class="taxonomy-section">
+        <section class="sidebar__section sidebar__section--tags">
           <h2>Tags</h2>
           {% if section.taxonomies.tags %}
-            <ul class="taxonomy-list tag-cloud">
+            <ul class="sidebar__list sidebar__list--tags">
               {% for tag, pages in section.taxonomies.tags | sort(attribute="1", reverse=true) %}
-                <li class="taxonomy-item tag-item">
+                <li class="sidebar__item">
                   <a href="{{ get_taxonomy_url(kind="tags", name=tag) }}" 
-                    class="tag {% if pages | length > 10 %}tag-popular{% elif pages | length > 5 %}tag-medium{% else %}tag-small{% endif %}">
-                    {{ tag }} <span class="count">({{ pages | length }})</span>
+                    class="tag tag--{% if pages | length > 10 %}popular{% elif pages | length > 5 %}medium{% else %}small{% endif %}">
+                    {{ tag }} <span class="sidebar__count">({{ pages | length }})</span>
                   </a>
                 </li>
               {% endfor %}

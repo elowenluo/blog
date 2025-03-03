@@ -3,49 +3,49 @@
 {% block title %}{{ taxonomy.name | title }}: {{ term.name }} | {{ config.title }}{% endblock title %}
 
 {% block content %}
-<main class="taxonomy-term">
-  <header class="taxonomy-header">
-    <h1>{{ taxonomy.name | title }}: {{ term.name }}</h1>
+<main class="term">
+  <header class="term__header">
+    <h1 class="term__title">{{ taxonomy.name | title }}: {{ term.name }}</h1>
   </header>
 
   {% if paginator %}
-  <section class="term-posts">
-    <div class="posts-container">
+  <section class="term__content">
+    <div class="term__posts">
       {% for page in paginator.pages %}
-      <article class="post-item">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="{{ page.permalink }}">{{ page.title }}</a>
+      <article class="term__post">
+        <header class="term__post-header">
+          <h2 class="term__post-title">
+            <a href="{{ page.permalink }}" class="term__post-link">{{ page.title }}</a>
           </h2>
           {% if page.date %}
-          <time class="post-date" datetime="{{ page.date | date(format='%Y-%m-%d') }}">
+          <time class="term__post-date" datetime="{{ page.date | date(format='%Y-%m-%d') }}">
             {{ page.date | date(format="%B %d, %Y") }}
           </time>
           {% endif %}
         </header>
         {% if page.description %}
-        <div class="post-description">{{ page.description }}</div>
+        <div class="term__post-description">{{ page.description }}</div>
         {% endif %}
       </article>
       {% endfor %}
     </div>
 
     {% if paginator.previous or paginator.next %}
-    <nav class="pagination-nav" aria-label="Pagination navigation">
+    <nav class="term__pagination" aria-label="Pagination navigation">
       {% if paginator.previous %}
-      <a class="pagination-prev" href="{{ paginator.previous }}">← Previous</a>
+      <a class="term__pagination-prev" href="{{ paginator.previous }}">← Previous</a>
       {% endif %}
       
-      <span class="pagination-info">Page {{ paginator.current_index }} of {{ paginator.number_pagers }}</span>
+      <span class="term__pagination-info">Page {{ paginator.current_index }} of {{ paginator.number_pagers }}</span>
       
       {% if paginator.next %}
-      <a class="pagination-next" href="{{ paginator.next }}">Next →</a>
+      <a class="term__pagination-next" href="{{ paginator.next }}">Next →</a>
       {% endif %}
     </nav>
     {% endif %}
   </section>
   {% else %}
-  <p class="no-posts-message">No posts found with this {{ taxonomy.name }}.</p>
+  <p class="term__empty-message">No posts found with this {{ taxonomy.name }}.</p>
   {% endif %}
 </main>
 {% endblock content %}

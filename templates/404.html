@@ -5,29 +5,29 @@
 {% endblock description %}
 
 {% block content %}
-  <article class="error-page" role="main">
-    <header class="error-header">
-      <h1>404 - Page Not Found</h1>
+  <article class="error" role="main">
+    <header class="error__header">
+      <h1 class="error__title">404 - Page Not Found</h1>
     </header>
 
-    <section class="error-content">
-      <p>
+    <section class="error__content">
+      <p class="error__message">
         Sorry, the page you were trying to access doesn't exist or has been moved.
       </p>
 
-      <nav class="error-navigation">
-        <h2>You might want to visit:</h2>
-        <ul>
-          <li><a href="/">Return to home page</a></li>
-          <li><a href="/blog">Browse blog posts</a></li>
-          <li><a href="/now">See what I'm up to now</a></li>
+      <nav class="error__nav">
+        <h2 class="error__subtitle">You might want to visit:</h2>
+        <ul class="error__links">
+          <li class="error__item"><a href="/" class="error__link">Return to home page</a></li>
+          <li class="error__item"><a href="/blog" class="error__link">Browse blog posts</a></li>
+          <li class="error__item"><a href="/now" class="error__link">See what I'm up to now</a></li>
         </ul>
       </nav>
     </section>
 
-    <footer class="error-footer">
-      <small>If you believe this is an error, please
-        <a href="mailto:your-email@example.com">contact me</a>.
+    <footer class="error__footer">
+      <small class="error__contact">If you believe this is an error, please
+        <a href="mailto:your-email@example.com" class="error__contact-link">contact me</a>.
       </small>
     </footer>
   </article>
