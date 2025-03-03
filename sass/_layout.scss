@@ -1,8 +1,10 @@
 // Base container
 .main {
   flex: 1 0 auto;
+  max-width: $container-width-lg;
+  margin: 0 auto;
+  padding: $spacing-4;
   width: 100%;
-  padding: $spacing-4 $spacing-2;
 
   @media (min-width: $breakpoint-sm) {
     padding: $spacing-4;
@@ -47,4 +49,8 @@
     margin-top: 0;
     max-width: $sidebar-width;
   }
+}
+
+.footer {
+  flex-shrink: 0;
 }

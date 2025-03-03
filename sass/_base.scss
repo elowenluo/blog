@@ -48,15 +48,3 @@ h6 {
 time {
   color: $color-text-alt;
 }
-
-.main {
-  flex: 1 0 auto;
-  max-width: $container-width-lg;
-  margin: 0 auto;
-  padding: $spacing-4;
-  width: 100%;
-}
-
-.footer {
-  flex-shrink: 0;
-}
