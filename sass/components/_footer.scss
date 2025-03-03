@@ -1,41 +1,39 @@
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.9rem;
-  color: $color-muted;
+.footer {
+  border-top: 1px solid $color-border;
+  padding-top: $spacing-4;
 
-  @media (max-width: $breakpoint-mobile) {
+  &__content {
+    display: flex;
     flex-direction: column;
-    gap: $spacing-base;
-    align-items: flex-start;
+    align-items: center;
+    gap: $spacing-2;
   }
-}
 
-.social-links {
-  display: flex;
-  gap: $spacing-base;
-  list-style: none;
-}
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+  }
 
-.copyright {
-  margin-top: $spacing-base;
-  text-align: center;
-  font-size: 0.9rem;
-  color: $color-muted;
-}
+  &__license {
+    text-align: center;
+  }
 
-.license-container {
-  margin-top: $spacing-base;
-  font-size: 0.85rem;
-}
+  &__badges {
+    margin-top: $spacing-1;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
 
-.license-badges {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: $spacing-small;
+  &__badge {
+    height: 30px;
+    width: 30px;
+  }
 
-  img {
-    height: 22px;
+  &__copyright {
+    margin-top: $spacing-2;
+    width: 100%;
+    text-align: center;
   }
 }
