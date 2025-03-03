@@ -41,3 +41,15 @@ document.addEventListener("DOMContentLoaded", function () {
     updateReadingProgress(); // Initialize on page load
   }
 });
+
+// JavaScript for "Back to Top" button
+document.addEventListener("DOMContentLoaded", function () {
+  // Back to top functionality
+  const backToTopButton = document.getElementById("back-to-top-link");
+  if (backToTopButton) {
+    backToTopButton.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+});
