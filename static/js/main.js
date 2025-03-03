@@ -1,49 +1,41 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Add copy functionality to all copy buttons
-  document.querySelectorAll(".copy-button").forEach(button => {
-    button.addEventListener("click", function () {
-      // Find the code element within the parent container
-      const codeContainer = this.parentElement;
-      const codeElement = codeContainer.querySelector("code");
-      const codeText = codeElement.textContent;
+  // Hamburger menu toggle
+  const menuToggler = document.querySelector(".header__toggler");
+  const menu = document.querySelector(".header__menu");
 
-      // Copy to clipboard
-      navigator.clipboard
-        .writeText(codeText)
-        .then(() => {
-          // Visual feedback
-          this.textContent = "Copied!";
-          this.classList.add("copied");
+  if (menuToggler && menu) {
+    menuToggler.addEventListener("click", function () {
+      // Toggle classes for hamburger animation and menu display
+      menuToggler.classList.toggle("is-active");
+      menu.classList.toggle("is-open");
 
-          // Reset after 2 seconds
-          setTimeout(() => {
-            this.textContent = "Copy";
-            this.classList.remove("copied");
-          }, 2000);
-        })
-        .catch(err => {
-          console.error("Failed to copy: ", err);
-        });
+      // Update ARIA attributes
+      const isExpanded = menuToggler.getAttribute("aria-expanded") === "true";
+      menuToggler.setAttribute("aria-expanded", !isExpanded);
     });
-  });
 
-  // Reading progress indicator
-  if (document.getElementById("readingProgress")) {
-    function updateReadingProgress() {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const scrollHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollTop / scrollHeight) * 100;
-      document.getElementById("readingProgress").style.width = `${progress}%`;
-    }
+    // Close menu when clicking outside
+    document.addEventListener("click", function (event) {
+      const isClickInside =
+        menu.contains(event.target) || menuToggler.contains(event.target);
 
-    window.addEventListener("scroll", updateReadingProgress);
-    updateReadingProgress(); // Initialize on page load
+      if (!isClickInside && menu.classList.contains("is-open")) {
+        menu.classList.remove("is-open");
+        menuToggler.classList.remove("is-active");
+        menuToggler.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Close menu when window is resized above mobile breakpoint
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 768 && menu.classList.contains("is-open")) {
+        menu.classList.remove("is-open");
+        menuToggler.classList.remove("is-active");
+        menuToggler.setAttribute("aria-expanded", "false");
+      }
+    });
   }
-});
 
-// JavaScript for "Back to Top" button
-document.addEventListener("DOMContentLoaded", function () {
   // Back to top functionality
   const backToTopButton = document.getElementById("back-to-top-link");
   if (backToTopButton) {

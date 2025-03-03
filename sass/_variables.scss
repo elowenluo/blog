@@ -1,65 +1,76 @@
-// Color variables
-$color-background: #f8f5f2;
-$color-background-dark: #eae4df;
-$color-text: #3a3a3a;
-$color-accent: #8b5d33;
-$color-muted: #c0b8b0;
-$color-light-accent: #d5cabe;
-$color-highlight: #a97b50;
-$color-border: $color-light-accent;
-$color-primary: $color-accent;
-$color-secondary: $color-muted;
-$color-link: $color-accent;
-$color-link-hover: $color-highlight;
+// Colors
+$color-brown-100: #f8f5f2;
+$color-brown-200: #eae4df;
+$color-brown-300: #d5cabe;
+$color-brown-400: #c0b8b0;
+$color-brown-500: #8b5d33;
+$color-brown-600: #a97b50;
+$color-gray-900: #3a3a3a;
 
-// Font variables
-$serif-font: "Georgia", serif;
-$sans-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$mono-font: "Courier New", Courier, monospace;
+$color-background: $color-brown-100;
+$color-background-alt: $color-brown-200;
+$color-text: $color-gray-900;
+$color-primary: $color-brown-500;
+$color-secondary: $color-brown-400;
+$color-border: $color-brown-300;
+$color-link: $color-brown-500;
+$color-link-hover: $color-brown-600;
 
-// Breakpoint variables
-$breakpoint-tablet: 768px;
-$breakpoint-mobile: 480px;
-
-// Spacing variables
-$spacing-extra-small: 0.5rem;
-$spacing-small: 0.75rem;
-$spacing-base: 1rem;
-$spacing-medium: 1.5rem;
-$spacing-large: 2rem;
-$spacing-extra-large: 3rem;
-
-// Container width
-$container-width: 800px;
-
-// Spacing variables - extended
+// Spacing
 $spacing-1: 0.25rem;
 $spacing-2: 0.5rem;
-$spacing-3: 0.75rem; // This is the same as $spacing-small
-$spacing-4: 1rem; // This is the same as $spacing-base
-$spacing-6: 1.5rem; // This is the same as $spacing-medium
-$spacing-8: 2rem; // This is the same as $spacing-large
-$spacing-12: 3rem; // This is the same as $spacing-extra-large
+$spacing-3: 0.75rem;
+$spacing-4: 1rem;
+$spacing-6: 1.5rem;
+$spacing-8: 2rem;
+$spacing-12: 3rem;
+$spacing-16: 4rem;
 
-// Font size variables
-$font-size-xs: 0.75rem;
-$font-size-sm: 0.875rem;
-$font-size-base: 1rem;
-$font-size-md: 1.125rem;
-$font-size-lg: 1.25rem;
-$font-size-xl: 1.5rem;
-$font-size-2xl: 2rem;
-$font-size-3xl: 2.5rem;
+$spacing-xs: $spacing-1;
+$spacing-sm: $spacing-2;
+$spacing-md: $spacing-4;
+$spacing-lg: $spacing-8;
+$spacing-xl: $spacing-12;
 
-// Border radius variables
-$border-radius-none: 0;
-$border-radius-sm: 0.125rem;
-$border-radius-md: 0.25rem;
-$border-radius-lg: 0.5rem;
-$border-radius-xl: 1rem;
-$border-radius-full: 9999px;
+// Breakpoints
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
 
-// Transition variables
+// Fonts
+$font-serif: "Georgia", serif;
+$font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-mono: "Courier New", Courier, monospace;
+
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-base: 1rem; // 16px
+$font-size-md: 1.125rem; // 18px
+$font-size-lg: 1.25rem; // 20px
+$font-size-xl: 1.5rem; // 24px
+$font-size-2xl: 2rem; // 32px
+$font-size-3xl: 2.5rem; // 40px
+
+// Font weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+// Border radius
+$radius-none: 0;
+$radius-sm: 0.125rem;
+$radius-md: 0.25rem;
+$radius-lg: 0.5rem;
+$radius-xl: 1rem;
+$radius-full: 9999px;
+
+// Transitions
 $transition-fast: 0.2s ease;
 $transition-medium: 0.3s ease;
 $transition-slow: 0.5s ease;
+
+// Layout
+$container-width-sm: 600px;
+$container-width-md: 800px;
+$container-width-lg: 1024px;

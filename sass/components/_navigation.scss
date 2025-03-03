@@ -1,46 +1,131 @@
-.main-navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+// Navigation styles
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: $color-background;
+  border-bottom: 1px solid $color-border;
 
-  .site-title {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: $color-text;
+  &__container {
+    max-width: $container-width-lg;
+    margin: 0 auto;
+    padding: $spacing-4;
   }
 
-  .nav-links {
+  &__nav {
     display: flex;
-    gap: $spacing-medium;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &__logo {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    text-decoration: none;
+    transition: color $transition-fast;
+    border-bottom: none;
+
+    &:hover {
+      color: $color-link-hover;
+      border-bottom: none;
+    }
+  }
+
+  &__toggler {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: $spacing-2;
+
+    @media (max-width: $breakpoint-md) {
+      display: block;
+      order: 3;
+    }
+  }
+
+  &__toggle-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    margin: 5px 0;
+    background-color: $color-primary;
+    transition: all $transition-medium;
+  }
+
+  &__menu {
+    display: flex;
     list-style: none;
+    margin: 0;
+    padding: 0;
 
-    @media (max-width: $breakpoint-tablet) {
-      gap: $spacing-base;
-    }
+    @media (max-width: $breakpoint-md) {
+      flex-basis: 100%;
+      flex-direction: column;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height $transition-medium;
+      order: 4;
+      width: 100%;
 
-    @media (max-width: $breakpoint-mobile) {
-      flex-wrap: wrap;
-      gap: $spacing-small $spacing-medium;
-    }
-  }
-
-  .nav-item {
-    display: inline-block;
-  }
-
-  .nav-link {
-    font-size: $spacing-base;
-    color: $color-text;
-
-    &.active {
-      color: $color-accent;
-      font-weight: 500;
+      &.is-open {
+        max-height: 300px;
+      }
     }
   }
 
-  @media (max-width: $breakpoint-mobile) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: $spacing-base;
+  &__item {
+    margin-left: $spacing-6;
+
+    @media (max-width: $breakpoint-md) {
+      margin-left: 0;
+      margin-top: $spacing-4;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    font-weight: $font-weight-normal;
+    transition: color $transition-fast;
+    position: relative;
+    border-bottom: none;
+
+    &:hover {
+      border-bottom: none;
+    }
+
+    &--active {
+      font-weight: $font-weight-bold;
+      color: $color-primary;
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $color-primary;
+      }
+    }
+  }
+
+  // Styles for when hamburger is toggled
+  &__toggler.is-active {
+    .header__toggle-line {
+      &:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+    }
   }
 }
