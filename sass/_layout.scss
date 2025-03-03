@@ -1,30 +1,50 @@
-.site-header {
-  padding: $spacing-large 0;
-  border-bottom: 1px solid $color-light-accent;
-  position: relative;
-}
+// Base container
+.main {
+  flex: 1 0 auto;
+  width: 100%;
+  padding: $spacing-4 $spacing-2;
 
-.site-content {
-  padding: $spacing-large 0;
-}
-
-.intro-section {
-  margin-bottom: $spacing-extra-large;
-}
-
-.site-footer {
-  padding: $spacing-large 0;
-  border-top: 1px solid $color-light-accent;
-  margin-top: $spacing-extra-large;
-}
-
-.home-container {
-  .home-header {
-    margin-bottom: $spacing-extra-large;
+  @media (min-width: $breakpoint-sm) {
+    padding: $spacing-4;
   }
 }
 
-.pinned-posts,
-.latest-posts {
-  margin-top: $spacing-large;
+.container-narrow {
+  width: 100%;
+  max-width: $content-width-md;
+  margin: 0 auto;
+}
+
+.container-with-sidebar {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $breakpoint-md) {
+    max-width: $content-width-sidebar;
+    display: grid;
+    grid-template-columns: $content-width-optimal 1fr;
+    gap: $spacing-8;
+    justify-content: center;
+  }
+}
+
+.content-primary {
+  width: 100%;
+
+  @media (min-width: $breakpoint-md) {
+    min-width: 0;
+    max-width: $content-width-optimal;
+  }
+}
+
+.content-sidebar {
+  width: 100%;
+  margin-top: $spacing-8;
+
+  @media (min-width: $breakpoint-md) {
+    margin-top: 0;
+    max-width: $sidebar-width;
+  }
 }

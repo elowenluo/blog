@@ -87,7 +87,7 @@
             <ul class="sidebar__list sidebar__list--tags">
               {% for tag, pages in section.taxonomies.tags | sort(attribute="1", reverse=true) %}
                 <li class="sidebar__item">
-                  <a href="{{ get_taxonomy_url(kind="tags", name=tag) }}" 
+                  <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}" 
                     class="tag tag--{% if pages | length > 10 %}popular{% elif pages | length > 5 %}medium{% else %}small{% endif %}">
                     {{ tag }} <span class="sidebar__count">({{ pages | length }})</span>
                   </a>

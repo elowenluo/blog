@@ -1,93 +1,131 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
+<div class="container-with-sidebar">
+  <article class="home content-primary">
+    <header class="home__header">
+      <h1>Hello, I'm {{ config.extra.author }}</h1>
 
-{% block content %}
-<article class="home">
-  <header class="home__header">
-    <h1>{{ config.extra.author }}</h1>
-    
-    <div class="home__introduction">
-      {% if section.content %}
-        {{ section.content | safe }}
-      {% else %}
-        <p>I'm a blogger focused on software development, digital minimalism, and thoughtful computing. Here, I share insights on web technologies, programming concepts, and personal digital workflows.</p>
-      {% endif %}
-    </div>
-  </header>
-  
-  <div class="home__update">
-    <p class="home__update-text">
-      {% set blog_section = get_section(path="blog/_index.md") %}
-      {% if blog_section and blog_section.pages and blog_section.pages | length > 0 %}
-        {% set latest_posts = blog_section.pages | sort(attribute="date") | reverse %}
-        Blog last updated 
+      <div class="home__introduction">{{ section.content | safe }}</div>
+    </header>
+
+    <div class="home__update">
+      <p class="home__update-text">
+        {% set blog_section = get_section(path="blog/_index.md") %} {% if
+        blog_section and blog_section.pages and blog_section.pages | length > 0
+        %} {% set latest_posts = blog_section.pages | sort(attribute="date") |
+        reverse %} Blog last updated
         <time datetime="{{ latest_posts[0].date }}">
           {{ latest_posts[0].date | date(format="%Y-%m-%d") }}
         </time>
-      {% endif %}
-    </p>
-  </div>
+        {% endif %}
+      </p>
+    </div>
 
-  {% set blog_section = get_section(path="blog/_index.md") %}
-  {% if blog_section and blog_section.pages %}
-    {% set pinned_pages = [] %}
-    {% for page in blog_section.pages %}
-      {% if page.extra and page.extra.pinned %}
-        {% set_global pinned_pages = pinned_pages | concat(with=page) %}
-      {% endif %}
-    {% endfor %}
-
-    {% if pinned_pages | length > 0 %}
-      <section class="home__featured">
-        <h2>Featured Posts</h2>
-        <ul class="home__list">
-          {% for page in pinned_pages %}
-            <li class="home__item">
-              <article class="home__post">
-                <header class="home__post-header">
-                  <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
-                  <time datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>
-                </header>
-                {% if page.description %}
-                  <p class="home__post-description">{{ page.description }}</p>
-                {% endif %}
-              </article>
-            </li>
-          {% endfor %}
-        </ul>
-      </section>
+    {% set blog_section = get_section(path="blog/_index.md") %} {% if
+    blog_section and blog_section.pages %} {% set pinned_pages = [] %} {% for
+    page in blog_section.pages %} {% if page.extra and page.extra.pinned %} {%
+    set_global pinned_pages = pinned_pages | concat(with=page) %} {% endif %} {%
+    endfor %} {% if pinned_pages | length > 0 %}
+    <section class="home__pinned">
+      <h2>Pinned Posts</h2>
+      <ul class="home__list">
+        {% for page in pinned_pages %}
+        <li class="home__item post-card">
+          <article class="home__post">
+            <header class="home__post-header">
+              <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
+              <time datetime="{{ page.date }}"
+                >{{ page.date | date(format="%B %d, %Y") }}</time
+              >
+            </header>
+            {% if page.description %}
+            <p class="home__post-description">{{ page.description }}</p>
+            {% endif %}
+          </article>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
     {% endif %}
 
     <section class="home__latest">
       <h2>Latest Posts</h2>
-      {% set latest_posts = blog_section.pages | sort(attribute="date") | reverse | slice(end=5) %}
-      
-      {% if latest_posts | length > 0 %}
-        <ul class="home__list">
-          {% for page in latest_posts %}
-            <li class="home__item">
-              <article class="home__post">
-                <header class="home__post-header">
-                  <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
-                  <time datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>
-                </header>
-                {% if page.description %}
-                  <p class="home__post-description">{{ page.description }}</p>
-                {% endif %}
-              </article>
-            </li>
-          {% endfor %}
-        </ul>
-        <footer class="home__footer">
-          <nav class="home__pagination">
-            <a href="{{ blog_section.permalink }}" class="home__link">View All Posts <span aria-hidden="true">→</span></a>
-          </nav>
-        </footer>
+      {% set latest_posts = blog_section.pages | sort(attribute="date") |
+      reverse | slice(end=5) %} {% if latest_posts | length > 0 %}
+      <ul class="home__list">
+        {% for page in latest_posts %}
+        <li class="home__item post-card">
+          <article class="home__post">
+            <header class="home__post-header">
+              <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
+              <time datetime="{{ page.date }}"
+                >{{ page.date | date(format="%B %d, %Y") }}</time
+              >
+            </header>
+            {% if page.description %}
+            <p class="home__post-description">{{ page.description }}</p>
+            {% endif %}
+          </article>
+        </li>
+        {% endfor %}
+      </ul>
+      <footer class="home__footer">
+        <nav class="home__pagination">
+          <a href="{{ blog_section.permalink }}" class="home__link"
+            >View All Posts <span aria-hidden="true">→</span></a
+          >
+        </nav>
+      </footer>
       {% else %}
-        <p>No posts yet</p>
+      <p>No posts yet</p>
       {% endif %}
     </section>
-  {% else %}
+    {% else %}
     <p>No posts available</p>
-  {% endif %}
-</article>
+    {% endif %}
+  </article>
+  <aside class="content-sidebar">
+    <!-- Categories section -->
+    <section class="sidebar__section">
+      <details class="sidebar__details" open>
+        <summary class="sidebar__heading">Categories</summary>
+        {% set categories = get_taxonomy(kind="categories") %} {% if categories
+        and categories.items %}
+        <ul class="sidebar__list">
+          {% for category in categories.items %}
+          <li class="sidebar__item">
+            <a href="{{ category.permalink }}" class="sidebar__link">
+              {{ category.name }} ({{ category.pages | length }})
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>No categories available</p>
+        {% endif %}
+      </details>
+    </section>
+
+    <!-- Tags section - limited to top 30 by count -->
+    <section class="sidebar__section">
+      <details class="sidebar__details" open>
+        <summary class="sidebar__heading">Popular Tags</summary>
+        {% set tags = get_taxonomy(kind="tags") %} {% if tags and tags.items %}
+        {% set sorted_tags = tags.items | sort(attribute="pages", reverse=true)
+        | slice(end=30) %}
+        <ul class="sidebar__list sidebar__tags">
+          {% for tag in sorted_tags %}
+          <li class="sidebar__tag">
+            <a href="{{ tag.permalink }}" class="sidebar__tag-link">
+              {{ tag.name }} ({{ tag.pages | length }})
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>No tags available</p>
+        {% endif %}
+      </details>
+    </section>
+  </aside>
+</div>
 {% endblock content %}

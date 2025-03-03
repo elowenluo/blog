@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="post">
-  <article class="post__article">
+<div class="post container-with-sidebar">
+  <article class="post__article content-primary">
     <header class="post__header">
       <h1 class="post__title">{{ page.title }}</h1>
       
@@ -25,57 +25,10 @@
       <div class="post__content">
         {{ page.content | safe }}
 
-        {% if page.taxonomies.tags %}
-        <footer class="post__footer">
-          <h2 class="post__tags-title">Tags:</h2>
-          <ul class="post__tags-list">
-            {% for tag in page.taxonomies.tags %}
-              <li class="post__tags-item"><a href="{{ get_taxonomy_url(kind="tags", name=tag) }}" class="post__tag">{{ tag }}</a></li>
-            {% endfor %}
-          </ul>
-        </footer>
-        {% endif %}
+        
       </div>
 
-      <aside class="post__sidebar">
-        <nav class="post__toc" aria-label="Table of Contents">
-          <h2 class="post__toc-title">Contents</h2>
-          <div id="toc" class="post__toc-content">
-            {% if page.toc %}
-              <ul class="post__toc-list">
-                {% for h1 in page.toc %}
-                  <li class="post__toc-item">
-                    <a href="{{ h1.permalink | safe }}" class="post__toc-link">{{ h1.title }}</a>
-                    {% if h1.children %}
-                      <ul class="post__toc-sublist">
-                        {% for h2 in h1.children %}
-                          <li class="post__toc-subitem">
-                            <a href="{{ h2.permalink | safe }}" class="post__toc-link">{{ h2.title }}</a>
-                            {% if h2.children %}
-                              <ul class="post__toc-subsublist">
-                                {% for h3 in h2.children %}
-                                  <li class="post__toc-subsubitem">
-                                    <a href="{{ h3.permalink | safe }}" class="post__toc-link">{{ h3.title }}</a>
-                                  </li>
-                                {% endfor %}
-                              </ul>
-                            {% endif %}
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    {% endif %}
-                  </li>
-                {% endfor %}
-              </ul>
-            {% else %}
-              <p class="post__toc-empty">No headings found</p>
-            {% endif %}
-          </div>
-        </nav>
-        <div class="post__back-to-top">
-          <a href="#" id="back-to-top-link" class="post__back-to-top-link" aria-label="Back to top">↑ Back to top</a>
-        </div>
-      </aside>
+
     </div>
 
     <nav class="post__navigation">
@@ -93,6 +46,58 @@
         </a>
       {% endif %}
     </nav>
+
+
   </article>
+
+  <aside class="post__sidebar content-sidebar">
+    <nav class="post__toc" aria-label="Table of Contents">
+      <h2 class="post__toc-title">Contents</h2>
+      <div id="toc" class="post__toc-content">
+        {% if page.toc %}
+          <ul class="post__toc-list">
+            {% for h1 in page.toc %}
+              <li class="post__toc-item">
+                <a href="{{ h1.permalink | safe }}" class="post__toc-link">{{ h1.title }}</a>
+                {% if h1.children %}
+                  <ul class="post__toc-sublist">
+                    {% for h2 in h1.children %}
+                      <li class="post__toc-subitem">
+                        <a href="{{ h2.permalink | safe }}" class="post__toc-link">{{ h2.title }}</a>
+                        {% if h2.children %}
+                          <ul class="post__toc-subsublist">
+                            {% for h3 in h2.children %}
+                              <li class="post__toc-subsubitem">
+                                <a href="{{ h3.permalink | safe }}" class="post__toc-link">{{ h3.title }}</a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="post__toc-empty">No headings found</p>
+        {% endif %}
+      </div>
+    </nav>
+    {% if page.taxonomies.tags %}
+        <footer class="post__footer">
+          <h2 class="post__tags-title">Tags:</h2>
+          <ul class="post__tags-list">
+            {% for tag in page.taxonomies.tags %}
+              <li class="post__tags-item"><a href="{{ get_taxonomy_url(kind="tags", name=tag) }}" class="post__tag">{{ tag }}</a></li>
+            {% endfor %}
+          </ul>
+        </footer>
+        {% endif %}
+    <div class="post__back-to-top">
+      <a href="#" id="back-to-top-link" class="post__back-to-top-link" aria-label="Back to top">↑ Back to top</a>
+    </div>
+  </aside>
 </div>
 {% endblock content %}
