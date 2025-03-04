@@ -1,5 +1,5 @@
 +++
-title = "Markdown Styling"
+title = "Markdown Styling Guide"
 description = "This document showcases how different Markdown elements are styled for your website. The design maintains your minimal aesthetic while ensuring readability and proper hierarchy."
 date = 2025-03-01
 draft = false
@@ -11,8 +11,6 @@ tags = ["web development", "programming", "zola"]
 [extra]
 pinned = true
 +++
-
-# Markdown Styling Guide
 
 This document showcases how different Markdown elements are styled for your website. The design maintains your minimal aesthetic while ensuring readability and proper hierarchy.
 
@@ -75,6 +73,11 @@ Links are styled in your accent color: [here is a link](http://example.com). The
 4. A nested numbered item
 5. Another nested numbered item
 6. Fourth item at the top level
+
+### Task List
+
+- [x] Drink a cup of water
+- [ ] Use Zola to build my static blog
 
 ## Blockquotes
 
