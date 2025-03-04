@@ -22,15 +22,10 @@
     </header>
 
     <div class="post__layout">
-      <div class="post__content">
+      <div class="post__content prose">
         {{ page.content | safe }}
-
-        
       </div>
-
-
     </div>
-
     <nav class="post__navigation">
       {% if page.earlier %}
         <a href="{{ page.earlier.permalink }}" class="post__navigation-prev">
