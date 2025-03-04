@@ -249,30 +249,71 @@
   }
 
   // Footnotes
-  .footnotes {
-    margin-top: $spacing-12;
-    padding-top: $spacing-6;
-    border-top: 1px solid $color-border;
-
-    ol {
-      font-size: $font-size-sm;
-    }
-
-    li {
-      margin-bottom: $spacing-3;
-    }
-  }
-
-  .footnote-ref {
+  .footnote-reference {
     font-size: $font-size-xs;
     vertical-align: super;
     line-height: 0;
     margin: 0 $spacing-1;
+
+    a {
+      color: $color-primary;
+      text-decoration: none;
+      border-bottom: none;
+      padding: 0 2px;
+
+      &:hover {
+        color: $color-link-hover;
+        border-bottom: none;
+      }
+    }
   }
 
-  .footnote-backref {
-    font-size: $font-size-sm;
-    padding: 0 $spacing-1;
+  // Individual footnote styling
+  .footnote-definition {
+    display: flex;
+    margin-bottom: $spacing-4;
+    padding-left: $spacing-6;
+
+    &:first-of-type {
+      margin-top: $spacing-12;
+      padding-top: $spacing-6;
+      border-top: 1px solid $color-border;
+      position: relative;
+
+      &:before {
+        content: "Footnotes";
+        position: absolute;
+        top: $spacing-2;
+        font-family: $font-sans;
+        font-size: $font-size-lg;
+        font-weight: $font-weight-bold;
+        color: $color-text;
+      }
+    }
+
+    &:last-of-type {
+      margin-bottom: $spacing-12;
+    }
+
+    // The footnote number
+    &-label {
+      margin-right: $spacing-2;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-bold;
+      color: $color-primary;
+      min-width: $spacing-4;
+      display: inline-block;
+      text-align: left;
+    }
+
+    // The footnote content
+    p {
+      display: inline;
+      margin: 0;
+      font-size: $font-size-sm;
+      color: $color-text;
+      line-height: 1.5;
+    }
   }
 
   // Other elements
