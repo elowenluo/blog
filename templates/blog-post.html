@@ -14,7 +14,7 @@
         {% if page.taxonomies.categories %}
         <div class="post__categories">
           {% for category in page.taxonomies.categories %}
-            <a href="{{ get_taxonomy_url(kind="categories", name=category) }}" class="post__category">{{ category }}</a>
+            <a href="{{ get_taxonomy_url(kind='categories', name=category) }}" class="post__category">{{ category }}</a>
           {% endfor %}
         </div>
         {% endif %}
