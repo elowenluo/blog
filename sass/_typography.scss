@@ -94,10 +94,9 @@
 
   // Code
   code {
-    font-family: $font-mono;
+    color: $color-brown-100;
     font-size: $font-size-sm;
     background-color: lighten($color-background, 2%);
-    color: darken($color-primary, 10%);
     padding: $spacing-1 $spacing-2;
     border-radius: $radius-md;
   }
@@ -115,10 +114,10 @@
     border-left: 3px solid $color-primary;
 
     code {
+      color: $color-brown-100;
       display: block;
       background-color: transparent;
       padding: 0;
-      color: $color-text;
       line-height: 1.5;
     }
   }
