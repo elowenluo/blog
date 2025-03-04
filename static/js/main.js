@@ -44,4 +44,59 @@ document.addEventListener("DOMContentLoaded", function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
+
+  // Add copy buttons to code blocks
+  const codeBlocks = document.querySelectorAll("pre code");
+
+  codeBlocks.forEach(codeBlock => {
+    // Get the parent pre element
+    const preElement = codeBlock.parentElement;
+
+    // Create a container for the code block if it doesn't already have one
+    let codeContainer = preElement.parentElement;
+    if (!codeContainer.classList.contains("code-container")) {
+      codeContainer = document.createElement("div");
+      codeContainer.className = "code-container";
+      preElement.parentNode.insertBefore(codeContainer, preElement);
+      codeContainer.appendChild(preElement);
+    }
+
+    // Create copy button
+    const copyButton = document.createElement("button");
+    copyButton.className = "copy-button";
+    copyButton.textContent = "Copy";
+
+    // Add click event listener
+    copyButton.addEventListener("click", () => {
+      // Get the text content
+      const code = codeBlock.textContent;
+
+      // Copy to clipboard
+      navigator.clipboard
+        .writeText(code)
+        .then(() => {
+          // Visual feedback
+          copyButton.textContent = "Copied!";
+          copyButton.classList.add("copied");
+
+          // Reset after 2 seconds
+          setTimeout(() => {
+            copyButton.textContent = "Copy";
+            copyButton.classList.remove("copied");
+          }, 2000);
+        })
+        .catch(error => {
+          console.error("Failed to copy code: ", error);
+          copyButton.textContent = "Error";
+
+          // Reset after 2 seconds
+          setTimeout(() => {
+            copyButton.textContent = "Copy";
+          }, 2000);
+        });
+    });
+
+    // Add the button to the code container
+    codeContainer.appendChild(copyButton);
+  });
 });
