@@ -1,16 +1,36 @@
 +++
 title = "Markdown Styling Guide"
 description = "This document showcases how different Markdown elements are styled for your website. The design maintains your minimal aesthetic while ensuring readability and proper hierarchy."
-date = 2025-03-01
+date = 2025-03-01T09:07:04Z
+updated = 2025-03-05T09:07:04Z
 draft = false
+weight = 10
+
+# slug = "slug-here"
+
+# path = "path-here"
+
+aliases = [""]
+authors = ["Claud 3.7 Sonnet"]
+in_search_index = false
+render = true
 
 [taxonomies]
-categories = ["Technology"]
+categories = ["Rust", "Technology"]
 tags = ["web development", "programming", "zola"]
-
 [extra]
-pinned = true
+
+toc = true
+
+# featured_image = "images/featured.jpg"
+
+show_comments = false
+reading_time = true
 +++
+
+Some summary...
+
+<!-- more -->
 
 This document showcases how different Markdown elements are styled for your website. The design maintains your minimal aesthetic while ensuring readability and proper hierarchy.
 

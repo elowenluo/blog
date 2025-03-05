@@ -14,7 +14,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
   font-family: $font-serif;
-  font-size: $font-size-base;
   line-height: 1.5;
   color: $color-text;
   background-color: $color-background;
@@ -47,4 +46,10 @@ h6 {
 
 time {
   color: $color-text-alt;
+}
+
+.icon {
+  width: $font-size-sm;
+  height: $font-size-sm;
+  display: inline-block;
 }

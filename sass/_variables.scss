@@ -30,6 +30,7 @@ $color-brown-400: #c0b8b0;
 $color-brown-500: #8b5d33;
 $color-brown-600: #a97b50;
 $color-gray-900: #3a3a3a;
+$color-green-800: #5d8b33;
 
 $color-background: $color-brown-100;
 $color-background-alt: $color-brown-200;
@@ -69,6 +70,7 @@ $font-serif: "Merriweather", serif;
 $font-sans: "Montserrat", sans-serif;
 $font-mono: "MonoLisa", monospace;
 
+$font-size-xxs: 0.625rem; // 10px
 $font-size-xs: 0.75rem; // 12px
 $font-size-sm: 0.875rem; // 14px
 $font-size-base: 1rem; // 16px
@@ -81,7 +83,9 @@ $font-size-3xl: 2.5rem; // 40px
 // Font weights
 $font-weight-light: 300;
 $font-weight-normal: 400;
+$font-weight-medium: 600;
 $font-weight-bold: 700;
+$font-weight-black: 900;
 
 // Border radius
 $radius-none: 0;
@@ -111,3 +115,7 @@ $content-width-xs: 100%;
 $content-width-sm: 100%;
 $content-width-md: 650px;
 $content-width-sidebar: 950px;
+
+$letter-spacing-sm: 0.03em;
+$letter-spacing-md: 0.08em;
+$letter-spacing-lg: 0.1em;
