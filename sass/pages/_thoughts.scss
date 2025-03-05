@@ -1,0 +1,175 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  // Thoughts Timeline styles
+  header {
+    background-color: $color-gray-900;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+
+    h1 {
+      font-family: $font-sans;
+      font-size: 2.5rem;
+      font-weight: $font-weight-bold;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    p {
+      font-size: 1.1rem;
+      opacity: 0.8;
+      font-family: $font-serif;
+    }
+  }
+}
+
+.timeline {
+  margin: 2rem auto;
+}
+
+// Year section styling with details/summary
+details.year-section {
+  margin-bottom: 2rem;
+  border-bottom: none;
+}
+
+details.year-section[open] {
+  margin-bottom: 3rem;
+}
+
+summary.year-heading {
+  list-style: none;
+  cursor: pointer;
+  border-bottom: 3px solid $color-brown-500;
+  margin-bottom: 2rem;
+  position: relative;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+.year-label {
+  background-color: $color-brown-500;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  display: inline-flex;
+  font-family: $font-sans;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  position: relative;
+  align-items: center;
+
+  &::after {
+    content: "+";
+    margin-left: 0.75rem;
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+}
+
+details[open] .year-label::after {
+  content: "−";
+}
+
+.year-content {
+  padding-bottom: 1rem;
+}
+
+// Thought styling
+.thought {
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid $color-brown-300;
+  padding-bottom: 1rem;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.thought-content {
+  padding: 1.5rem;
+  background-color: white;
+  border-left: 4px solid $color-brown-500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.timestamp {
+  color: $color-gray-700;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+  font-family: $font-sans;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  display: inline-block;
+}
+
+.thought-text {
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.thought-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: $color-brown-200;
+  color: $color-brown-600;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  font-family: $font-sans;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+
+  &:hover {
+    background-color: $color-brown-300;
+  }
+}
+
+.thought-appends {
+  margin-top: 1rem;
+}
+
+.thought-append {
+  padding: 1rem 1.5rem;
+  background-color: var(--color-brown-100);
+  border-left: 4px solid var(--color-brown-400);
+  margin-bottom: 0.5rem;
+}
+
+.append-timestamp {
+  color: var(--color-gray-700);
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.append-text {
+  font-size: 1rem;
+  line-height: 1.6;
+}

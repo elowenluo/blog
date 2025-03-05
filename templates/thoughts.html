@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="thoughts-header">
+  <h1>{{ section.title }}</h1>
+  <p>A timeline of ideas, reflections, and inspirations</p>
+</header>
+
+<div class="container">
+  <div class="timeline">
+    <ol class="details-list">
+      {% for year, pages in section.pages | sort(attribute="date") | reverse | group_by(attribute="year") %}
+        <li class="details-list__item">
+          {% if loop.first %}
+          <details open>
+          {% else %}
+          <details>
+          {% endif %}
+            <summary class="year-heading">
+              <div class="year-label">{{ year }}</div>
+            </summary>
+            <div class="year-content">
+              {% set sorted_thoughts = pages | sort(attribute="date") | reverse %}
+              
+              {% for thought in sorted_thoughts %}
+                <div class="thought">
+                  <div class="thought-content">
+                    <div class="timestamp">
+                      <svg
+                        class="icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect
+                          x="3"
+                          y="4"
+                          width="18"
+                          height="18"
+                          rx="2"
+                          ry="2"
+                        ></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                      </svg>
+                      {{ thought.date | date(format="%B %d, %Y") }}
+                    </div>
+                    <div class="thought-text">
+                      {% if "+++END_THOUGHT+++" in thought.content %}
+                        {{ thought.content | split(pat="+++END_THOUGHT+++") | first | safe }}
+                      {% else %}
+                        {{ thought.content | safe }}
+                      {% endif %}
+                    </div>
+                    {% if thought.taxonomies and thought.taxonomies.tags %}
+                    <div class="thought-tags">
+                      {% for tag in thought.taxonomies.tags %}
+                        <span class="tag">{{ tag }}</span>
+                      {% endfor %}
+                    </div>
+                    {% endif %}
+                  </div>
+
+                  {% if "+++END_THOUGHT+++" in thought.content %}
+                    <div class="thought-appends">
+                      {{ thought.content | split(pat="+++END_THOUGHT+++") | last | safe }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          </details>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</div>
+{% endblock content %}
