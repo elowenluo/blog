@@ -1,114 +1,124 @@
-{% extends "base.html" %} {% block content %}
-<article class="blog container-with-sidebar">
-  <div class="blog__layout content-primary">
-    <header class="blog__header">
-      <h1>{{ section.title }}</h1>
-      {% if section.description %}
-      <p class="blog__description">{{ section.description }}</p>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="post container-with-sidebar">
+  <article class="post__article content-primary">
+    <header class="post__header">
+      <h1 class="post__title">{{ page.title }}</h1>
+      
+      <div class="post__meta">
+        {% if page.date %}
+          <time class="post__date" datetime="{{ page.date }}">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span class="post__meta-label">Published:</span> 
+            {{ page.date | date(format="%Y-%m-%d") }}
+          </time>
+        {% endif %}
+
+        {% if page.reading_time %}
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <span class="post__reading-time"> 
+          {{ page.reading_time }} min read
+        </span>
+        {% if page.word_count %}
+        <span class="post__word-count">
+          ({{ page.word_count }} words)
+        </span>
+        {% endif %}
       {% endif %}
+
+      {% if page.taxonomies.categories %}
+          <div class="post__categories">
+            {% for category in page.taxonomies.categories %}
+              <a href="{{ get_taxonomy_url(kind='categories', name=category) }}" class="post__category btn btn--category">{{ category | upper }}</a>
+            {% endfor %}
+          </div>
+      {% endif %}
+        
+        {% if page.updated %}
+          <time class="post__date" datetime="{{ page.updated }}">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            <span class="post__meta-label">Last updated:</span> 
+            {{ page.updated | date(format="%Y-%m-%d") }}
+          </time>
+        {% endif %}
+      </div>
     </header>
-    <section class="blog__posts">
-      {% if paginator.pages %}
-      <ul class="blog__list">
-        {% for page in paginator.pages %}
-        <li class="blog__item">
-          <article class="post">
-            <header class="post__header">
-              <h2 class="post__title">
-                <a href="{{ page.permalink }}">{{ page.title }}</a>
-              </h2>
-              {% if page.date %}
-              <time class="post__date" datetime="{{ page.date }}"
-                >{{ page.date | date(format="%B %d, %Y") }}</time
-              >
-              {% endif %}
-            </header>
-            {% if page.description %}
-            <div class="post__summary">{{ page.description }}</div>
-            {% endif %}
-          </article>
-        </li>
-        {% endfor %}
-      </ul>
 
-      {% if paginator.number_pagers > 1 %}
-      <nav class="pagination" aria-label="Pagination">
-        <ul class="pagination__list">
-          {% if paginator.previous %}
-          <li class="pagination__item pagination__item--prev">
-            <a href="{{ paginator.previous }}" aria-label="Previous page"
-              >← Previous</a
-            >
-          </li>
-          {% else %}
-          <li
-            class="pagination__item pagination__item--prev pagination__item--disabled"
-          >
-            <span>← Previous</span>
-          </li>
-          {% endif %}
-
-          <!-- 保留原有分页逻辑代码 -->
-
-          {% if paginator.next %}
-          <li class="pagination__item pagination__item--next">
-            <a href="{{ paginator.next }}" aria-label="Next page">Next →</a>
-          </li>
-          {% else %}
-          <li
-            class="pagination__item pagination__item--next pagination__item--disabled"
-          >
-            <span>Next →</span>
-          </li>
-          {% endif %}
-        </ul>
-      </nav>
-      {% endif %} {% else %}
-      <p class="blog__empty">No posts available</p>
+    <div class="post__layout">
+      <div class="post__content prose">
+        {% if page.content | replace(from=page.summary, to="") %}
+        {{ page.content | replace(from=page.summary, to="") | safe }} {% else
+        %} {{ page.content | safe }} {% endif %}
+      </div>
+    </div>
+    <nav class="post__navigation">
+      {% if page.earlier %}
+        <a href="{{ page.earlier.permalink }}" class="post__navigation-prev">
+          <span class="post__navigation-label">← Previous</span>
+          <span class="post__navigation-title">{{ page.earlier.title }}</span>
+        </a>
       {% endif %}
-    </section>
-  </div>
-  <aside class="sidebar content-sidebar">
-    <section class="sidebar__section">
-      <details class="sidebar__details" open>
-        <summary class="sidebar__heading">Categories</summary>
-        {% set categories = get_taxonomy(kind="categories") %} {% if categories
-        and categories.items %}
-        <ul class="sidebar__list">
-          {% for category in categories.items %}
-          <li class="sidebar__item">
-            <a href="{{ category.permalink }}" class="sidebar__link">
-              {{ category.name }} ({{ category.pages | length }})
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-        {% else %}
-        <p>No categories available</p>
-        {% endif %}
-      </details>
-    </section>
+      
+      {% if page.later %}
+        <a href="{{ page.later.permalink }}" class="post__navigation-next">
+          <span class="post__navigation-label">Next →</span>
+          <span class="post__navigation-title">{{ page.later.title }}</span>
+        </a>
+      {% endif %}
+    </nav>
 
-    <section class="sidebar__section">
-      <details class="sidebar__details" open>
-        <summary class="sidebar__heading">Popular Tags</summary>
-        {% set tags = get_taxonomy(kind="tags") %} {% if tags and tags.items %}
-        {% set sorted_tags = tags.items | sort(attribute="pages", reverse=true)
-        %}
-        <ul class="sidebar__list sidebar__tags">
-          {% for tag in sorted_tags %}
-          <li class="sidebar__tag">
-            <a href="{{ tag.permalink }}" class="sidebar__tag-link">
-              {{ tag.name }} ({{ tag.pages | length }})
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
+
+  </article>
+
+  <aside class="post__sidebar content-sidebar">
+    <nav class="post__toc" aria-label="Table of Contents">
+      <h2 class="post__toc-title">Contents</h2>
+      <div id="toc" class="post__toc-content">
+        {% if page.toc %}
+          <ul class="post__toc-list">
+            {% for h1 in page.toc %}
+              <li class="post__toc-item">
+                <a href="{{ h1.permalink | safe }}" class="post__toc-link">{{ h1.title }}</a>
+                {% if h1.children %}
+                  <ul class="post__toc-sublist">
+                    {% for h2 in h1.children %}
+                      <li class="post__toc-subitem">
+                        <a href="{{ h2.permalink | safe }}" class="post__toc-link">{{ h2.title }}</a>
+                        {% if h2.children %}
+                          <ul class="post__toc-subsublist">
+                            {% for h3 in h2.children %}
+                              <li class="post__toc-subsubitem">
+                                <a href="{{ h3.permalink | safe }}" class="post__toc-link">{{ h3.title }}</a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
         {% else %}
-        <p>No tags available</p>
+          <p class="post__toc-empty">No headings found</p>
         {% endif %}
-      </details>
-    </section>
+      </div>
+    </nav>
+    {% if page.taxonomies.tags %}
+        <footer class="post__footer">
+          <h2 class="post__tags-title">Tags:</h2>
+          <ul class="post__tags-list">
+            {% for tag in page.taxonomies.tags %}
+              <li class="post__tags-item"><a href="{{ get_taxonomy_url(kind='tags', name=tag) }}" class="post__tag btn btn--tag">{{ tag }}</a></li>
+            {% endfor %}
+          </ul>
+        </footer>
+        {% endif %}
+    <div class="post__back-to-top">
+      <a href="#" id="back-to-top-link" class="post__back-to-top-link" aria-label="Back to top">↑ Back to top</a>
+    </div>
   </aside>
-</article>
+</div>
 {% endblock content %}

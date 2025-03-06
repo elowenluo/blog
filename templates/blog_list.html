@@ -1,0 +1,112 @@
+{% extends "base.html" %} {% block content %}
+<article class="blog container-with-sidebar">
+  <div class="blog__layout content-primary">
+    <header class="blog__header">
+      <h1>{{ section.title }}</h1>
+      {% if section.description %}
+      <p class="blog__description">{{ section.description }}</p>
+      {% endif %}
+    </header>
+    <section class="blog__posts">
+      {% if paginator.pages %}
+      <ul class="blog__list">
+        {% for page in paginator.pages %}
+        <li class="blog__item">
+          <article class="post">
+            <header class="post__header">
+              <h2 class="post__title">
+                <a href="{{ page.permalink }}">{{ page.title }}</a>
+              </h2>
+              {% if page.date %}
+              <time class="post__date" datetime="{{ page.date }}"
+                >{{ page.date | date(format="%B %d, %Y") }}</time
+              >
+              {% endif %}
+            </header>
+            {% if page.description %}
+            <div class="post__summary">{{ page.description }}</div>
+            {% endif %}
+          </article>
+        </li>
+        {% endfor %}
+      </ul>
+
+      {% if paginator.number_pagers > 1 %}
+      <nav class="pagination" aria-label="Pagination">
+        <ul class="pagination__list">
+          {% if paginator.previous %}
+          <li class="pagination__item pagination__item--prev">
+            <a href="{{ paginator.previous }}" aria-label="Previous page"
+              >← Previous</a
+            >
+          </li>
+          {% else %}
+          <li
+            class="pagination__item pagination__item--prev pagination__item--disabled"
+          >
+            <span>← Previous</span>
+          </li>
+          {% endif %}
+
+          {% if paginator.next %}
+          <li class="pagination__item pagination__item--next">
+            <a href="{{ paginator.next }}" aria-label="Next page">Next →</a>
+          </li>
+          {% else %}
+          <li
+            class="pagination__item pagination__item--next pagination__item--disabled"
+          >
+            <span>Next →</span>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+      {% endif %} {% else %}
+      <p class="blog__empty">No posts available</p>
+      {% endif %}
+    </section>
+  </div>
+  <aside class="sidebar content-sidebar">
+    <section class="sidebar__section">
+      <details class="sidebar__details" open>
+        <summary class="sidebar__heading">Categories</summary>
+        {% set categories = get_taxonomy(kind="categories") %} {% if categories
+        and categories.items %}
+        <ul class="sidebar__list">
+          {% for category in categories.items %}
+          <li class="sidebar__item">
+            <a href="{{ category.permalink }}" class="sidebar__link">
+              {{ category.name }} ({{ category.pages | length }})
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>No categories available</p>
+        {% endif %}
+      </details>
+    </section>
+
+    <section class="sidebar__section">
+      <details class="sidebar__details" open>
+        <summary class="sidebar__heading">Popular Tags</summary>
+        {% set tags = get_taxonomy(kind="tags") %} {% if tags and tags.items %}
+        {% set sorted_tags = tags.items | sort(attribute="pages", reverse=true)
+        %}
+        <ul class="sidebar__list sidebar__tags">
+          {% for tag in sorted_tags %}
+          <li class="sidebar__tag">
+            <a href="{{ tag.permalink }}" class="sidebar__tag-link">
+              {{ tag.name }} ({{ tag.pages | length }})
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>No tags available</p>
+        {% endif %}
+      </details>
+    </section>
+  </aside>
+</article>
+{% endblock content %}
