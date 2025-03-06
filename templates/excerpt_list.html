@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+<article>
+  <div>
+    <header>
+      <h1>{{ section.title }}</h1>
+      {% if section.description %}
+      <p>{{ section.description }}</p>
+      {% endif %}
+    </header>
+    <section>
+      {% if paginator.pages %}
+      <ul>
+        {% for page in paginator.pages %}
+        <li>
+          <article>
+            <header>
+              {% if page.extra.content_type %}
+              <span>{{ page.extra.content_type }}</span>
+              {% endif %}
+              <h2>
+                <a href="{{ page.permalink }}">{{ page.title }}</a>
+              </h2>
+              {% if page.date %}
+              <time datetime="{{ page.date }}"
+                >{{ page.date | date(format="%B %d, %Y") }}</time
+              >
+              {% endif %}
+            </header>
+            {% if page.description %}
+            <div>{{ page.description }}</div>
+            {% endif %}
+          </article>
+        </li>
+        {% endfor %}
+      </ul>
+      {% if paginator.number_pagers > 1 %}
+      <nav aria-label="Pagination">
+        <ul>
+          {% if paginator.previous %}
+          <li>
+            <a href="{{ paginator.previous }}" aria-label="Previous page"
+              >← Previous</a
+            >
+          </li>
+          {% else %}
+          <li
+
+          >
+            <span>← Previous</span>
+          </li>
+          {% endif %}
+
+          {% if paginator.next %}
+          <li>
+            <a href="{{ paginator.next }}" aria-label="Next page">Next →</a>
+          </li>
+          {% else %}
+          <li
+
+          >
+            <span>Next →</span>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+      {% endif %} {% else %}
+      <p>No posts available</p>
+      {% endif %}
+    </section>
+  </div>
+</article>
+
+{% endblock content %}

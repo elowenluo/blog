@@ -14,7 +14,8 @@ build_search_index = true
 taxonomies = [
   {name = "tags", paginate_by = 5, feed = true},
   {name = "categories", paginate_by = 5, feed = true},
-  {name = "thought_tags", feed = false, render = false}
+  {name = "thought_tags", feed = false, render = false},
+  {name = "excerpt_tags", feed = false, render = false},
 ]
 
 [markdown]

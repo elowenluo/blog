@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block content %}
+<div class="excerpt container-with-sidebar">
+  <article class="excerpt__article content-primary">
+    <header class="excerpt__header">
+      {% if page.type %}
+      <span>{{ page.type }}</span>
+      {% endif %}
+      <h1 class="excerpt__title">{{ page.title }}</h1>
+
+      <div class="excerpt__meta">
+        {% if page.author %}
+        <p>{{page.author}}</p>
+        {% endif %}
+
+        <div class="post-summary">{{ page.summary | safe }}</div>
+
+        <div class="excerpt__tags">
+          {% for tag in page.taxonomies.tags %}
+          <a
+            href="{{ get_taxonomy_url(kind='tags', name=tag) }}"
+            class="excerpt__tag btn btn--tag"
+            >{{ tag | upper }}</a
+          >
+          {% endfor %}
+        </div>
+
+        <div class="excerpt__content prose">
+          {% if page.content | replace(from=page.summary, to="") %} {{
+          page.content | replace(from=page.summary, to="") | safe }} {% else %}
+          {{ page.content | safe }} {% endif %}
+        </div>
+      </div>
+    </header>
+  </article>
+
+  <aside class="contnt-aside">Suggestion</aside>
+</div>
+{% endblock content %}
